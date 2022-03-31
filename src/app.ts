@@ -1,3 +1,3 @@
-import { Pin } from './Pin';
+import Pin from './Pin';
 
 new Pin(1000);

@@ -1,11 +1,11 @@
-export class Pin {
+export default class Pin {
   private quantity: number;
 
   constructor(quantity: number) {
     this.quantity = quantity;
   }
 
-  createPinsBatch() {
+  public createPinsBatch() {
     const set = new Set();
     while(set.size !== this.quantity) {
       set.add(this.validPin())
@@ -20,11 +20,12 @@ export class Pin {
     }
     return pin
   }
+
   private randmoPinGenerator() {
     return Math.floor(Math.random() * (9999 - 1000 + 1) + 1000)
   }
   
-  private isPinInvalid(pin: number) {
+  public isPinInvalid(pin: number) {
     const hasSameConsecetiveDigits = (/(\d)\1/).test(pin.toString())
     return hasSameConsecetiveDigits || this.hasIncrementalDigits(pin)
   }
@@ -34,7 +35,7 @@ export class Pin {
     const firstThreeDigits = pinArray.slice(0,3) 
     const lastThreeDigits = pinArray.slice(-3)
   
-    this.areThreeDigitsIncremental(firstThreeDigits) ||
+    return this.areThreeDigitsIncremental(firstThreeDigits) ||
     this.areThreeDigitsIncremental(lastThreeDigits)
   }
   
